@@ -1,0 +1,27 @@
+services:
+  hw_db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: 'root'
+      POSTGRES_PASSWORD: 'root'
+      POSTGRES_DB: 'ny_taxi_hw'
+    ports:
+      - '5432:5432'
+    volumes:
+      - vol-hw_db_data:/var/lib/postgresql
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'admin@admin.com'
+      PGADMIN_DEFAULT_PASSWORD: 'root'
+    ports:
+     - '8080:80'
+    volumes:
+     - vol-pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  vol-hw_db_data:
+    name: vol-hw_db_data
+  vol-pgadmin_data:
+    name: vol-pgadmin_data
